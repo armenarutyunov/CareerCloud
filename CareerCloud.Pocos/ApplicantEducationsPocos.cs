@@ -28,17 +28,5 @@ namespace CareerCloud.Pocos
             public Byte[] TimeStamp { get; set; }
         
     }
-    [Table("Applicant_Job_Applications")]
-    class ApplicantJobApplicationsPocos
-    {
-      [Key]
-        public Guid Id { get; set; }
-        public Guid Applicant { get; set; }
-        public Guid Job { get; set; }
-        [Column("Application_Date")]
-        public DateTime ApplicationDate { get; set; }
-        [Column("Time_Stamp")]
-        public Byte[] TimeStamp { get; set; }
-
-    }
+    
 }
