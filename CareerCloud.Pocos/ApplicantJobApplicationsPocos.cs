@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.Pocos
 {
-
     [Table("Applicant_Job_Applications")]
     public class ApplicantJobApplicationsPocos
     {
