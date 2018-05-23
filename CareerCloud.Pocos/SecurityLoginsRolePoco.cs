@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.Pocos
 {
-    [Table("System_Country_Codes")]
-    public class SystemCountryCodesPoco
+    [Table("Security_Logins_Roles")]
+    public class SecurityLoginsRolePoco
     {
         [Key]
-        public String Code { get; set; }
-        public String Name { get; set; }
-       
+        public Guid Id { get; set; }
+        public Guid Login { get; set; }
+        public Guid Role { get; set; }
+        [Column("Time_Stamp")]
+        public Byte[] TimeStamp { get; set; }
+
     }
 }

@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.Pocos
 {
-    [Table("Security_Logins_Roles")]
-    public class SecurityLoginsRolesPoco
+    [Table("Company_Jobs")]
+    public class CompanyJobPoco
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid Login { get; set; }
-        public Guid Role { get; set; }
+        public Guid Company { get; set; }
+        [Column("Profile_Created")]
+        public DateTime ProfileCreated { get; set; }
+        [Column("Is_Inactive")]
+        public Boolean IsInactive { get; set; }
+        [Column("Is_Company_Hidden")]
+        public Boolean IsCompanyHidden { get; set; }
         [Column("Time_Stamp")]
         public Byte[] TimeStamp { get; set; }
 

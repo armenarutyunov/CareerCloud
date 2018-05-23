@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CareerCloud.Pocos
 {
     [Table("Company_Profiles")]
-    public class CompanyProfilesPoco
+    public class CompanyProfilePoco
     {
         [Key]
         public Guid Id { get; set; }
