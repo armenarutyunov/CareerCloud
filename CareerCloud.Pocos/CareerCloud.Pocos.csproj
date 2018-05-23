@@ -45,6 +45,21 @@
     <Compile Include="ApplicantJobApplicationsPoco.cs" />
     <Compile Include="ApplicantProfilesPoco.cs" />
     <Compile Include="ApplicantResumesPoco.cs" />
+    <Compile Include="ApplicantSkillsPoco.cs" />
+    <Compile Include="ClassT - Copy %2810%29.cs" />
+    <Compile Include="ClassT - Copy %2811%29.cs" />
+    <Compile Include="ClassT - Copy %2812%29.cs" />
+    <Compile Include="ClassT - Copy %2813%29.cs" />
+    <Compile Include="ClassT - Copy %282%29.cs" />
+    <Compile Include="ClassT - Copy %283%29.cs" />
+    <Compile Include="ClassT - Copy %284%29.cs" />
+    <Compile Include="ClassT - Copy %285%29.cs" />
+    <Compile Include="ClassT - Copy %286%29.cs" />
+    <Compile Include="CompanyJobsPoco.cs" />
+    <Compile Include="CompanyJobSkillsPoco.cs" />
+    <Compile Include="CompanyJobEducationsPoco.cs" />
+    <Compile Include="CompanyDescriptionsPoco.cs" />
+    <Compile Include="ApplicantWorkHistoryPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
