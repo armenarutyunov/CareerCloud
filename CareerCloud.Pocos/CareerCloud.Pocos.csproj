@@ -51,10 +51,10 @@
     <Compile Include="ClassT - Copy %2812%29.cs" />
     <Compile Include="ClassT - Copy %2813%29.cs" />
     <Compile Include="ClassT - Copy %282%29.cs" />
-    <Compile Include="ClassT - Copy %283%29.cs" />
-    <Compile Include="ClassT - Copy %284%29.cs" />
-    <Compile Include="ClassT - Copy %285%29.cs" />
-    <Compile Include="ClassT - Copy %286%29.cs" />
+    <Compile Include="SecurityLoginsPoco.cs" />
+    <Compile Include="CompanyProfilesPoco.cs" />
+    <Compile Include="CompanyLocationsPoco.cs" />
+    <Compile Include="CompanyJobDescriptionPoco.cs" />
     <Compile Include="CompanyJobsPoco.cs" />
     <Compile Include="CompanyJobSkillsPoco.cs" />
     <Compile Include="CompanyJobEducationsPoco.cs" />
