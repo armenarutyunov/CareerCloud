@@ -41,9 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicantEducationsPocos.cs" />
-    <Compile Include="ApplicantJobApplicationsPocos.cs" />
-    <Compile Include="ApplicantProfilesPocos.cs" />
+    <Compile Include="ApplicantEducationsPoco.cs" />
+    <Compile Include="ApplicantJobApplicationsPoco.cs" />
+    <Compile Include="ApplicantProfilesPoco.cs" />
+    <Compile Include="ApplicantResumesPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
