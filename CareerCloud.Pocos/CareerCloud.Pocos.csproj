@@ -46,11 +46,11 @@
     <Compile Include="ApplicantProfilesPoco.cs" />
     <Compile Include="ApplicantResumesPoco.cs" />
     <Compile Include="ApplicantSkillsPoco.cs" />
-    <Compile Include="ClassT - Copy %2810%29.cs" />
-    <Compile Include="ClassT - Copy %2811%29.cs" />
-    <Compile Include="ClassT - Copy %2812%29.cs" />
-    <Compile Include="ClassT - Copy %2813%29.cs" />
-    <Compile Include="ClassT - Copy %282%29.cs" />
+    <Compile Include="SystemLanguageCodesPoco.cs" />
+    <Compile Include="SystemCountryCodesPoco.cs" />
+    <Compile Include="SecurityRolesPoco.cs" />
+    <Compile Include="SecurityLoginsRolesPoco.cs" />
+    <Compile Include="SecurityLoginsLogPoco.cs" />
     <Compile Include="SecurityLoginsPoco.cs" />
     <Compile Include="CompanyProfilesPoco.cs" />
     <Compile Include="CompanyLocationsPoco.cs" />
