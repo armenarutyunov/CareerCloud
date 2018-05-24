@@ -46,14 +46,14 @@ namespace CareerCloud.UnitTests.Assingment1Tests
             Assert.IsTrue(_types.Any(t => t.Name == "SecurityRolePoco"));
             Assert.IsTrue(_types.Any(t => t.Name == "SystemCountryCodePoco"));
             Assert.IsTrue(_types.Any(t => t.Name == "SystemLanguageCodePoco"));
-           //@ Assert.IsTrue(_types.Any(t => t.Name == "IPoco"));
+            Assert.IsTrue(_types.Any(t => t.Name == "IPoco"));
         }
 
         [TestMethod]
         public void Assignment_1_Poco_ApplicationEducationPoco()
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantEducationPoco");
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Educations"));
 
 
@@ -81,7 +81,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantJobApplicationPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Job_Applications"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -103,7 +103,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantProfilePoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Profiles"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -136,7 +136,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantResumePoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Resumes"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -157,7 +157,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantSkillPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Skills"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -187,7 +187,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "ApplicantWorkHistoryPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Applicant_Work_History"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -224,7 +224,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyDescriptionPoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Descriptions"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -248,7 +248,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyJobEducationPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Job_Educations"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -269,7 +269,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyJobPoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Jobs"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -292,7 +292,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyJobDescriptionPoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Jobs_Descriptions"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -313,7 +313,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyJobSkillPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Job_Skills"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -336,7 +336,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyLocationPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Locations"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -363,7 +363,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "CompanyProfilePoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Company_Profiles"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -387,7 +387,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "SecurityLoginPoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Security_Logins"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -426,7 +426,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "SecurityLoginsLogPoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Security_Logins_Log"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -447,7 +447,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "SecurityLoginsRolePoco");
 
-            //@ Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Security_Logins_Roles"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
@@ -466,7 +466,7 @@ namespace CareerCloud.UnitTests.Assingment1Tests
         {
             Type poco = GetCharacteristics.GetType(_types, "SecurityRolePoco");
 
-            //@Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
+            Assert.IsTrue(GetCharacteristics.ImplementsInterface(poco, "IPoco"));
 
             Assert.IsTrue(GetCharacteristics.HasTable(poco, "Security_Roles"));
             Assert.IsTrue(GetCharacteristics.HasKey(GetCharacteristics.GetProperty(poco, "Id")));
