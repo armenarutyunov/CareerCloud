@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.Pocos
 {
-    [Table("Company_Job_Description")]
+    [Table("Company_Jobs_Descriptions")]
     public class CompanyJobDescriptionPoco
     {
         [Key]
