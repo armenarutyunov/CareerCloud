@@ -21,7 +21,7 @@ namespace CareerCloud.ADODataAccessLayer
             int rowsEffected = 0;
             foreach (ApplicantEducationPoco poco in items)
             {
-            cmd.CommandText = @"INSERT INTO Applicant_Educations 
+                cmd.CommandText = @"INSERT INTO Applicant_Educations 
             ( Id, Applicant, Major, Certificate_Diploma, Start_Date, Completion_Date, Completion_Percent) Values 
             (@Id, @Applicant, @Major, @Certificate_Diploma, @Start_Date, @Completion_Date, @Completion_Percent)";
                 cmd.Parameters.AddWithValue("@Id", poco.Id);
@@ -37,7 +37,6 @@ namespace CareerCloud.ADODataAccessLayer
                 conn.Close();
             }
         }
-
         public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
         {
             throw new NotImplementedException();
