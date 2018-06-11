@@ -2,44 +2,49 @@
 using CareerCloud.Pocos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CareerCloud.ADODataAccessLayer
 {
     public class ApplicantEducationRepository : BaseADO,  IDataRepository<ApplicantEducationPoco>
     {
+       
+
         public void Add(params ApplicantEducationPoco[] items)
         {
             //The command "using" is replacing the set of commands Try {_connection.Open();} Cath {_connection.Close();
 
             using (_connection)
-          { 
+            { 
                 //SqlConnection conn = new SqlConnection(_connString);
                 //Inside of BaseADO we have created the instance of SqlConnection (_connection) and transmitted this value to
                 // class ApplicantEducationRepository over Inheritance
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = _connection;
-                _connection.Open();
-                int rowsEffected = 0;
-            foreach (ApplicantEducationPoco poco in items)
-            {
-                cmd.CommandText = @"INSERT INTO Applicant_Educations 
-            ( Id, Applicant, Major, Certificate_Diploma, Start_Date, Completion_Date, Completion_Percent) Values 
-            (@Id, @Applicant, @Major, @Certificate_Diploma, @Start_Date, @Completion_Date, @Completion_Percent)";
-                cmd.Parameters.AddWithValue("@Id", poco.Id);
-                cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
-                cmd.Parameters.AddWithValue("@Major", poco.Major);
-                cmd.Parameters.AddWithValue("@Certificate_Diploma", poco.CertificateDiploma);
-                cmd.Parameters.AddWithValue("@Start_Date", poco.StartDate);
-                cmd.Parameters.AddWithValue("@Completion_Date", poco.CompletionDate);
-                cmd.Parameters.AddWithValue("@Completion_Percent", poco.CompletionPercent);
+                        int rowsEffected = 0;
+                       
+                        foreach (ApplicantEducationPoco poco in items)
+                        {
 
-               
-              
-                rowsEffected += cmd.ExecuteNonQuery();
+                        _connection.Open();
+                        cmd.CommandText = @"INSERT INTO Applicant_Educations 
+                        ( Id, Applicant, Major, Certificate_Diploma, Start_Date, Completion_Date, Completion_Percent) Values 
+                        (@Id, @Applicant, @Major, @Certificate_Diploma, @Start_Date, @Completion_Date, @Completion_Percent)";
+                            cmd.Parameters.AddWithValue("@Id", poco.Id);
+                            cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
+                            cmd.Parameters.AddWithValue("@Major", poco.Major);
+                            cmd.Parameters.AddWithValue("@Certificate_Diploma", poco.CertificateDiploma);
+                            cmd.Parameters.AddWithValue("@Start_Date", poco.StartDate);
+                            cmd.Parameters.AddWithValue("@Completion_Date", poco.CompletionDate);
+                            cmd.Parameters.AddWithValue("@Completion_Percent", poco.CompletionPercent);
+                            rowsEffected += cmd.ExecuteNonQuery();
+                            _connection.Close();
+
+                        }
             }
-          }
         }
         public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
         {
@@ -48,18 +53,26 @@ namespace CareerCloud.ADODataAccessLayer
 
         public IList<ApplicantEducationPoco> GetAll(params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
         {
-            ApplicantEducationPoco[] pocos = new ApplicantEducationPoco[1000];
+            //ApplicantEducationPoco[] pocos = new ApplicantEducationPoco[1000];
+            IList<ApplicantEducationPoco> pocos = new ApplicantEducationPoco[1000];
+            //SqlConnection _connection1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+
             using (_connection)
             {
+
+               
                 SqlCommand cmd = new SqlCommand();
-                cmd.Connection = _connection;
-                cmd.CommandText = "Select * from Applicant_Educations";
-                _connection.Open();
+               SqlConnection  _connection1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+
+                cmd.Connection = _connection1;
+                cmd.CommandText = @"Select * from Applicant_Educations";
+                _connection1.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                
                 int position = 0;
                 while (reader.Read())
                 {
+                    //_connection.Open();
                     ApplicantEducationPoco poco = new ApplicantEducationPoco();
                     poco.Id = reader.GetGuid(0);
                     poco.Applicant = reader.GetGuid(1);
@@ -71,12 +84,13 @@ namespace CareerCloud.ADODataAccessLayer
                     poco.TimeStamp = (byte[])reader[7];
                     pocos[position] = poco;
                     position++;
-
+                    //_connection.Close();
                 }
 
-
+               _connection1.Close();
             }
-            return pocos;
+            return pocos.Where(p => p != null).ToList();
+           // return pocos;
         }
 
         public IList<ApplicantEducationPoco> GetList(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
@@ -86,36 +100,66 @@ namespace CareerCloud.ADODataAccessLayer
 
         public ApplicantEducationPoco GetSingle(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            using (_connection)
+            {
+                
+
+               //_connection.Open();
+                IQueryable<ApplicantEducationPoco> pocos = GetAll().AsQueryable();
+               return pocos.Where(where).FirstOrDefault();
+            }
         }
 
         public void Remove(params ApplicantEducationPoco[] items)
         {
             using (_connection)
             {
-                Guid[] TabId = new Guid[1000];
-                int pos = 0;
-                SqlCommand sqlCom = new SqlCommand("select * from Applicant_Profiles", _connection);
-                _connection.Open();
-                SqlDataReader rdr = sqlCom.ExecuteReader();
-                while (rdr.Read())
+               
+                 
+                foreach (ApplicantEducationPoco poco in items)
                 {
-                    TabId[pos] = rdr.GetGuid(0);
-                    pos++;
+                    _connection.Open();
+                    SqlCommand RemRow = new SqlCommand();
+                    RemRow.Connection = _connection;
+                    RemRow.CommandText =     @"delete from Applicant_Educations where Id = @Id";
+                    RemRow.Parameters.AddWithValue("@Id", poco.Id);
+                    RemRow.ExecuteNonQuery();
+                    _connection.Close();
                 }
-                _connection.Close();
-                string sqldel = String.Format("delete from Applicant_Profiles where Id = {0}", ApplicantEducationPoco[0]);
-               SqlCommand RemRow = new SqlCommand($"(delete )",  + )
-                Console.WriteLine($"(ddd = {0})", Row[0].Id);
-
-                Guid[] ar = new Guid[1000];
+               
+              
             }
            
         }
 
         public void Update(params ApplicantEducationPoco[] items)
         {
-            throw new NotImplementedException();
+            using (_connection)
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                _connection.Open();
+                 foreach(ApplicantEducationPoco poco in items)
+                {
+                cmd.CommandText = @"update Applicant_Educations set " +
+                "Applicant = @Applicant, Major=@Major, Certificate_Diploma = @Certificate_Diploma, Start_Date= @Start_Date, Completion_Date= " +
+                "@Completion_Date, Completion_Percent = @Completion_Percent where Id = @Id";
+
+                cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
+                cmd.Parameters.AddWithValue("@Major", poco.Major);
+                cmd.Parameters.AddWithValue("@Certificate_Diploma", poco.CertificateDiploma);
+                cmd.Parameters.AddWithValue("@Start_Date", poco.StartDate);
+                cmd.Parameters.AddWithValue("@Completion_Date", poco.CompletionDate);
+                cmd.Parameters.AddWithValue("@Completion_Percent", poco.CompletionPercent);
+                cmd.Parameters.AddWithValue("@Id", poco.Id);
+
+                cmd.ExecuteNonQuery();
+
+                }
+                _connection.Close();
+               
+            }
+
         }
     }
 }

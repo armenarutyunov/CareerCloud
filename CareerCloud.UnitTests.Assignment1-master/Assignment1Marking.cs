@@ -7,6 +7,7 @@ using CareerCloud.UnitTests.Utils;
 
 namespace CareerCloud.UnitTests.Assingment1Tests
 {
+/*@**@*/
     [TestCategory("Assignment 1 Poco Tests")]
     [TestClass]
     public class Assignment1Marking
@@ -504,4 +505,5 @@ namespace CareerCloud.UnitTests.Assingment1Tests
             Assert.IsTrue(GetCharacteristics.GetPropertyType(poco, typeof(string), "Name"));
         }
     }
+/*@**@*/
 }
