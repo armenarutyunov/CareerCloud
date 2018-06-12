@@ -2,6 +2,8 @@
 using CareerCloud.Pocos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,30 @@ namespace CareerCloud.ADODataAccessLayer
     {
         public void Add(params CompanyJobPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                int rowsEffected = 0;
+                foreach (CompanyJobPoco poco in items)
+                {
+
+                    _connection.Open();
+                    cmd.CommandText = @"INSERT INTO Company_Jobs 
+                        ( Id, Company, Profile_Created, Is_Inactive, Is_Company_Hidden) Values 
+                        (@Id, @Company, @Profile_Created, @Is_Inactive, @Is_Company_Hidden)";
+
+                    cmd.Parameters.AddWithValue("@Id", poco.Id);
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@Profile_Created", poco.ProfileCreated);
+                    cmd.Parameters.AddWithValue("@Is_Inactive", poco.IsInactive);
+                    cmd.Parameters.AddWithValue("@Is_Company_Hidden", poco.IsCompanyHidden);
+                   
+                    rowsEffected += cmd.ExecuteNonQuery();
+                    _connection.Close();
+                }
+            }
         }
 
         public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
@@ -22,7 +47,40 @@ namespace CareerCloud.ADODataAccessLayer
 
         public IList<CompanyJobPoco> GetAll(params System.Linq.Expressions.Expression<Func<CompanyJobPoco, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            IList<CompanyJobPoco> pocos = new CompanyJobPoco[1100];
+
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+
+                SqlCommand cmd = new SqlCommand();
+                //SqlConnection _connection1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+
+                cmd.Connection = _connection;
+                cmd.CommandText = @"Select * from Company_Jobs";
+                _connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int position = 0;
+                while (reader.Read())
+                {
+
+                    CompanyJobPoco poco = new CompanyJobPoco();
+                    poco.Id = reader.GetGuid(0);
+                    poco.Company = reader.GetGuid(1);
+                    poco.ProfileCreated = reader.GetDateTime(2);
+                    poco.IsInactive = reader.GetBoolean(3);
+                    poco.IsCompanyHidden = reader.GetBoolean(4);
+                    poco.TimeStamp = (byte[])reader[5];
+
+                    pocos[position] = poco;
+                    position++;
+
+                }
+
+                _connection.Close();
+            }
+            return pocos.Where(p => p != null).ToList();
         }
 
         public IList<CompanyJobPoco> GetList(System.Linq.Expressions.Expression<Func<CompanyJobPoco, bool>> where, params System.Linq.Expressions.Expression<Func<CompanyJobPoco, object>>[] navigationProperties)
@@ -32,17 +90,61 @@ namespace CareerCloud.ADODataAccessLayer
 
         public CompanyJobPoco GetSingle(System.Linq.Expressions.Expression<Func<CompanyJobPoco, bool>> where, params System.Linq.Expressions.Expression<Func<CompanyJobPoco, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
-        }
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+                IQueryable<CompanyJobPoco> pocos = GetAll().AsQueryable();
+                return pocos.Where(where).FirstOrDefault();
+            }
+         }
 
         public void Remove(params CompanyJobPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+
+                foreach (CompanyJobPoco poco in items)
+                {
+                    _connection.Open();
+                    SqlCommand RemRow = new SqlCommand();
+                    RemRow.Connection = _connection;
+                    RemRow.CommandText = @"delete from Company_Jobs where Id = @Id";
+                    RemRow.Parameters.AddWithValue("@Id", poco.Id);
+                    RemRow.ExecuteNonQuery();
+                    _connection.Close();
+                }
+
+
+            }
         }
 
         public void Update(params CompanyJobPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                _connection.Open();
+                foreach (CompanyJobPoco poco in items)
+                {
+                    cmd.CommandText = @"update Company_Jobs set " +
+                    "Company = @Company, Profile_Created =  @Profile_Created, Is_Inactive = @Is_Inactive, Is_Company_Hidden = @Is_Company_Hidden " +
+                    " where Id = @Id";
+
+
+                    cmd.Parameters.AddWithValue("@Id", poco.Id);
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@Profile_Created", poco.ProfileCreated);
+                    cmd.Parameters.AddWithValue("@Is_Inactive", poco.IsInactive);
+                    cmd.Parameters.AddWithValue("@Is_Company_Hidden", poco.IsCompanyHidden);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                _connection.Close();
+
+            }
         }
     }
 }

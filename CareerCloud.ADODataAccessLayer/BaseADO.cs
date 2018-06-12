@@ -13,14 +13,16 @@ namespace CareerCloud.ADODataAccessLayer
         //protected readonly string _connString;
         //We created instance of SqlConnection type -connection which consist ll the information about connection with the DB
         //The particular DB have been described in Config File inside of "AppConfig" file (belongs to one of the assemblies)
-        protected  readonly SqlConnection _connection;
-        
+       // protected  readonly SqlConnection _connection;
+        protected  readonly string conn;
+
         public BaseADO()
         {
-            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+           // _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+            conn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         }
             
-    }
+    } 
 }
 
 

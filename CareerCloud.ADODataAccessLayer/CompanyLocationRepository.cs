@@ -2,6 +2,7 @@
 using CareerCloud.Pocos;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -13,7 +14,30 @@ namespace CareerCloud.ADODataAccessLayer
     {
         public void Add(params CompanyLocationPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                int rowsEffected = 0;
+                foreach (CompanyLocationPoco poco in items)
+                {
+
+                    _connection.Open();
+                    cmd.CommandText = @"INSERT INTO Company_Locations 
+                        ( Id, Company, Country_Code, State_Province_Code, Street_Address, City_Town, Zip_Postal_Code) Values 
+                        (@Id, @Company, @Country_Code, @State_Province_Code, @Street_Address, @City_Town, @Zip_Postal_Code)";
+                    cmd.Parameters.AddWithValue("@Id", poco.Id);
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@Country_Code", poco.CountryCode);
+                    cmd.Parameters.AddWithValue("@State_Province_Code", poco.Province);
+                    cmd.Parameters.AddWithValue("@Street_Address", poco.Street);
+                    cmd.Parameters.AddWithValue("@City_Town", poco.City);
+                    cmd.Parameters.AddWithValue("@Zip_Postal_Code", poco.PostalCode);
+                    rowsEffected += cmd.ExecuteNonQuery();
+                    _connection.Close();
+                }
+            }
         }
 
         public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
@@ -23,7 +47,38 @@ namespace CareerCloud.ADODataAccessLayer
 
         public IList<CompanyLocationPoco> GetAll(params Expression<Func<CompanyLocationPoco, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            IList<CompanyLocationPoco> pocos = new CompanyLocationPoco[1000];
+
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                cmd.CommandText = @"Select * from Company_Locations";
+                _connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int position = 0;
+                while (reader.Read())
+                {
+
+                    CompanyLocationPoco poco = new CompanyLocationPoco();
+                    poco.Id = reader.GetGuid(0);
+                    poco.Company = reader.GetGuid(1);
+                    poco.CountryCode =(reader[2] == DBNull.Value)? null : reader.GetString(2);
+                    poco.Province= (reader[3] == DBNull.Value) ? null : reader.GetString(3);
+                    poco.Street= (reader[4] == DBNull.Value) ? null : reader.GetString(4);
+                    poco.City= (reader[5] == DBNull.Value) ? null : reader.GetString(5);
+                    poco.PostalCode= (reader[6] == DBNull.Value) ? null : reader.GetString(6);
+                    poco.TimeStamp = (byte[])reader[7];
+
+                    pocos[position] = poco;
+                    position++;
+
+                }
+
+                _connection.Close();
+            }
+            return pocos.Where(p => p != null).ToList();
         }
 
         public IList<CompanyLocationPoco> GetList(Expression<Func<CompanyLocationPoco, bool>> where, params Expression<Func<CompanyLocationPoco, object>>[] navigationProperties)
@@ -33,17 +88,58 @@ namespace CareerCloud.ADODataAccessLayer
 
         public CompanyLocationPoco GetSingle(Expression<Func<CompanyLocationPoco, bool>> where, params Expression<Func<CompanyLocationPoco, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+
+                IQueryable<CompanyLocationPoco> pocos = GetAll().AsQueryable();
+                return pocos.Where(where).FirstOrDefault();
+            }
         }
 
         public void Remove(params CompanyLocationPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+                foreach (CompanyLocationPoco poco in items)
+                {
+                    _connection.Open();
+                    SqlCommand RemRow = new SqlCommand();
+                    RemRow.Connection = _connection;
+                    RemRow.CommandText = @"delete from Company_Locations where Id = @Id";
+                    RemRow.Parameters.AddWithValue("@Id", poco.Id);
+                    RemRow.ExecuteNonQuery();
+                    _connection.Close();
+                }
+            }
         }
 
         public void Update(params CompanyLocationPoco[] items)
         {
-            throw new NotImplementedException();
+            using (SqlConnection _connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
+                _connection.Open();
+                foreach (CompanyLocationPoco poco in items)
+                {
+                    cmd.CommandText = @"update Company_Locations set " +
+                    " Company = @Company, Country_Code = @Country_Code, State_Province_Code = @State_Province_Code,Street_Address =  @Street_Address, City_Town = @City_Town,Zip_Postal_Code =  @Zip_Postal_Code"+
+                    " where Id = @Id";
+
+                    cmd.Parameters.AddWithValue("@Id", poco.Id);
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@Country_Code", poco.CountryCode);
+                    cmd.Parameters.AddWithValue("@State_Province_Code", poco.Province);
+                    cmd.Parameters.AddWithValue("@Street_Address", poco.Street);
+                    cmd.Parameters.AddWithValue("@City_Town", poco.City);
+                    cmd.Parameters.AddWithValue("@Zip_Postal_Code", poco.PostalCode);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                _connection.Close();
+
+            }
         }
     }
 }
