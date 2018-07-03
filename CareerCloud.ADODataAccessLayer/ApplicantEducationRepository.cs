@@ -91,7 +91,6 @@ namespace CareerCloud.ADODataAccessLayer
         {
             using (SqlConnection _connection = new SqlConnection(conn))
             {
-            
                 IQueryable<ApplicantEducationPoco> pocos = GetAll().AsQueryable();
                return pocos.Where(where).FirstOrDefault();
             }
