@@ -45,11 +45,7 @@ namespace CareerCloud.BusinessLogicLayer
                 {
                     exceptions.Add(new ValidationException(201, $"Importance cannot be less than 0 - {poco.Id}"));
                 }
-                //if (poco.CompletionDate < poco.StartDate)
-                //{
-                //    exceptions.Add(new ValidationException(109, $"CompletionDate cannot be earlier than StartDate - {poco.Id}"));
-
-                //}
+               
 
                 if (exceptions.Count > 0)
                 {

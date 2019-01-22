@@ -50,14 +50,31 @@
     <Compile Include="CompanyDescriptionLogic.cs" />
     <Compile Include="CompanyJobDescriptionLogic.cs" />
     <Compile Include="CompanyJobEducationLogic.cs" />
+    <Compile Include="CompanyJobLogic.cs" />
+    <Compile Include="CompanyJobSkillLogic.cs" />
+    <Compile Include="CompanyLocationLogic.cs" />
+    <Compile Include="CompanyProfileLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityLoginLogic.cs" />
+    <Compile Include="SecurityLoginsLogLogic.cs" />
+    <Compile Include="SecurityLoginsRoleLogic.cs" />
+    <Compile Include="SecurityRoleLogic.cs" />
+    <Compile Include="SystemCountryCodeLogic.cs" />
+    <Compile Include="SystemLanguageCodeLogic.cs" />
     <Compile Include="ValidationException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CareerCloud.ADODataAccessLayer\CareerCloud.ADODataAccessLayer.csproj">
+      <Project>{8659F4B0-3030-4D02-B124-8204F1EE2359}</Project>
+      <Name>CareerCloud.ADODataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CareerCloud.DataAccessLayer\CareerCloud.DataAccessLayer.csproj">
       <Project>{796ccfe4-ce62-4a19-9a1c-d634c0fab800}</Project>
       <Name>CareerCloud.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CareerCloud.EntityFrameworkDataAccess\CareerCloud.EntityFrameworkDataAccess.csproj">
+      <Project>{e42e04b8-ddc1-4a9c-870d-d49001f055e1}</Project>
+      <Name>CareerCloud.EntityFrameworkDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\CareerCloud.Pocos\CareerCloud.Pocos.csproj">
       <Project>{efd16d83-6a70-42b6-bfe2-3f3c336e327c}</Project>

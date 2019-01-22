@@ -41,21 +41,7 @@ namespace CareerCloud.BusinessLogicLayer
                     exceptions.Add(new ValidationException(301, $"JobDescriptions cannot be Null or Empty - {poco.Id}"));
 
                 }
-                //else
-                //if (poco.Major.Length < 3)
-                //{
-                //    exceptions.Add(new ValidationException(107, $"Cannot be empty or less than 3 characters - {poco.Id}"));
-                //}
-                //if (poco.StartDate > DateTime.Now)
-                //{
-                //    exceptions.Add(new ValidationException(108, $"Cannot be greater than today - {poco.Id}"));
-
-                //}
-                //if (poco.CompletionDate < poco.StartDate)
-                //{
-                //    exceptions.Add(new ValidationException(109, $"CompletionDate cannot be earlier than StartDate - {poco.Id}"));
-
-                //}
+               
 
                 if (exceptions.Count > 0)
                 {

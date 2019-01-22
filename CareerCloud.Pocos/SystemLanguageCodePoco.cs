@@ -16,6 +16,14 @@ namespace CareerCloud.Pocos
         public String Name { get; set; }
         [Column("Native_Name")]
         public String NativeName { get; set; }
-        
+
+        public virtual ICollection<CompanyDescriptionPoco> CompanyDescriptions { get; set; }
+
+        public SystemLanguageCodePoco()
+        {
+            CompanyDescriptions = new List<CompanyDescriptionPoco>();
+
+        }
     }
 }
+

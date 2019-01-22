@@ -31,21 +31,7 @@ namespace CareerCloud.BusinessLogicLayer
             List<ValidationException> exceptions = new List<ValidationException>();
             foreach (ApplicantJobApplicationPoco poco in pocos)
             {
-                //if (string.IsNullOrEmpty(poco.Major))
-                //{
-                //    exceptions.Add(new ValidationException(107, $"Cannot be empty or less than 3 characters - {poco.Id}"));
-
-                //}
-                //else
-                //if (poco.Major.Length < 3)
-                //{
-                //    exceptions.Add(new ValidationException(107, $"Cannot be empty or less than 3 characters - {poco.Id}"));
-                //}
-                //if (poco.StartDate > DateTime.Now)
-                //{
-                //    exceptions.Add(new ValidationException(108, $"Cannot be greater than today - {poco.Id}"));
-
-                //}
+               
                 if (poco.ApplicationDate > DateTime.Now)
                 {
                     exceptions.Add(new ValidationException(110, $"ApplicationDate cannot be greater than today - {poco.Id}"));

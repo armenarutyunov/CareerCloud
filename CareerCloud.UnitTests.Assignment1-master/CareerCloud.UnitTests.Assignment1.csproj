@@ -57,13 +57,13 @@
     <Compile Include="Utils\GetCharacteristics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CareerCloud.Pocos\CareerCloud.Pocos.csproj">
-      <Project>{8601d71b-67f4-47b1-be11-9e7f3b9c8e1b}</Project>
-      <Name>CareerCloud.Pocos</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\CareerCloud.Pocos\CareerCloud.Pocos.csproj">
+      <Project>{efd16d83-6a70-42b6-bfe2-3f3c336e327c}</Project>
+      <Name>CareerCloud.Pocos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

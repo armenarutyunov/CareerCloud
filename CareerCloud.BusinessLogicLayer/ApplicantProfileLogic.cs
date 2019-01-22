@@ -31,12 +31,7 @@ namespace CareerCloud.BusinessLogicLayer
             List<ValidationException> exceptions = new List<ValidationException>();
             foreach (ApplicantProfilePoco poco in pocos)
             {
-                //if (string.IsNullOrEmpty(poco.Major))
-                //{
-                //    exceptions.Add(new ValidationException(107, $"Cannot be empty or less than 3 characters - {poco.Id}"));
-
-                //}
-                //else
+               
                 if (poco.CurrentSalary < 0)
                 {
                     exceptions.Add(new ValidationException(111, $"CurrentSalary cannot be negative - {poco.Id}"));
@@ -46,11 +41,7 @@ namespace CareerCloud.BusinessLogicLayer
                     exceptions.Add(new ValidationException(112, $"CurrentRate cannot be negative - {poco.Id}"));
 
                 }
-                //if (poco.CompletionDate < poco.StartDate)
-                //{
-                //    exceptions.Add(new ValidationException(109, $"CompletionDate cannot be earlier than StartDate - {poco.Id}"));
-
-                //}
+               
 
                 if (exceptions.Count > 0) 
                 {

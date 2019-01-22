@@ -31,12 +31,7 @@ namespace CareerCloud.BusinessLogicLayer
             List<ValidationException> exceptions = new List<ValidationException>();
             foreach (ApplicantSkillPoco poco in pocos)
             {
-                //if (string.IsNullOrEmpty(poco.Major))
-                //{
-                //    exceptions.Add(new ValidationException(107, $"Cannot be empty or less than 3 characters - {poco.Id}"));
-
-                //}
-                //else
+               
                 if ((int)poco.StartMonth > 12)
                 {
                     exceptions.Add(new ValidationException(101, $"StartMonth Cannot be greater than 12 - {poco.Id}"));

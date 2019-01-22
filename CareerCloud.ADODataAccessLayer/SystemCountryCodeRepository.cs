@@ -12,7 +12,7 @@ namespace CareerCloud.ADODataAccessLayer
 {
     public class SystemCountryCodeRepository : BaseADO, IDataRepository<SystemCountryCodePoco>
     {
-        public void Add(params SystemCountryCodePoco[] items)
+        public virtual void Add(params SystemCountryCodePoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(conn))
             {
@@ -102,7 +102,7 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
 
-        public void Update(params SystemCountryCodePoco[] items)
+        public virtual void Update(params SystemCountryCodePoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(conn))
             {
